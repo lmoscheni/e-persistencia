@@ -27,37 +27,34 @@ public class HomeUser {
 	protected void save(String userName,String name,String surname,String email,String birth,String password) throws Exception{
 		Connection connection = new TableConnector().getConnection();
 		PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (Name,UserName,Surname,Email,Password,Birth) VALUES (?,?,?,?,?,?)");
-
 		statement.setString(1, name);
 		statement.setString(2, userName);
 		statement.setString(3, surname);
 		statement.setString(4, email);
 		statement.setString(5, password);
 		statement.setString(6, birth);
-		
-		int registrosModificados = statement.executeUpdate();
-		System.out.println("Lineas Modificadas" + registrosModificados);
+		statement.executeUpdate();
 		connection.close();
 	}
 	
 	public boolean isSamePassword(String userName, String password) throws Exception{
+		boolean ret = false;
 		Connection connection = new TableConnector().getConnection();
 		PreparedStatement statement = connection.prepareStatement("SELECT UserName,Password FROM Users WHERE UserName=? AND Password=?");
 		statement.setString(1,userName);
 		statement.setString(2,password);
 		ResultSet res = statement.executeQuery();
-		String user = null;
-		String passwordd = null;
-		while(res.next()){
-			user = res.getString("UserName");
+		String user;
+		String passwordd;
+		if(res.next()){
+			user = res.getString("USerName");
 			passwordd = res.getString("Password");
-		}
-		if (user.equals(userName) && passwordd.equals(password)){
-			connection.close();
-			return true;
+			if (user.equals(userName) && passwordd.equals(password)){
+				ret = true;
+			}
 		}
 		connection.close();
-		return false;
+		return ret;
 	}
 	
 	public void changeUserPassword(String userName, String password) throws Exception{

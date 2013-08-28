@@ -2,6 +2,8 @@ package main;
 
 import java.util.Random;
 
+import email.Email;
+
 import Exceptions.*;
 
 public class VirtualDT {
@@ -11,7 +13,7 @@ public class VirtualDT {
 	//********************************************************************************************************************
 	private void notifyValidation(String email) {
 		String code = this.getCode(7);
-		//Envio el mail
+		Email emailToSend = new Email(email, "Codigo de validacion: " + code);
 	}
 	
 	public void validatePassword(String userName, String password) throws Exception{
@@ -57,8 +59,12 @@ public class VirtualDT {
 		}
 	}
 	
-	public void login(String userName, String password){
-		
+	public void login(String userName, String password) throws Exception{
+		if(this.users.isSamePassword(userName, password)){
+			System.out.print("Usuario logueado");
+		}else{
+			throw new FailPasswordException();
+		}
 	}
 	
 	public void changePassword(String userName, String password) throws Exception{
