@@ -11,6 +11,7 @@ public class Main {
 		//v.changePassword("matiCapo", "123545");
 		v.registrateUser("juliCapo", "Julian", "Skalic", "skalic.julian@gmail.com", "17/02/1992", "julianskalic");
 		//v.login("juliCapo", "565");
+		//v.validationUser("juliCapo", "XW6EW6P");
 	}
 
 }

@@ -1,5 +1,5 @@
 package Exceptions;
 
-public class UserAlreadyExistException extends Exception{
+public class UserAlreadyExistException extends RuntimeException{
 
 }

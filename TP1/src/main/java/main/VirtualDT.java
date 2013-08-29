@@ -8,8 +8,11 @@ import Exceptions.*;
 
 public class VirtualDT {
 
-	protected HomeUser users = new HomeUser();
+	protected HomeUser users;
 	
+	public VirtualDT(){
+		this.users = new HomeUser();
+	}
 	//********************************************************************************************************************
 	//********************************************************************************************************************
 	
@@ -18,7 +21,7 @@ public class VirtualDT {
 	*/
 	private void notifyValidation(String email,String code) {
 		Email emailToSend = new Email(email, "Codigo de validacion: " + code);
-		emailToSend.send();
+		//emailToSend.send();
 	}
 	
 	public void validatePassword(String userName, String password) throws Exception{
@@ -51,10 +54,10 @@ public class VirtualDT {
 	//********************************************************************************************************************
 	//********************************************************************************************************************
 	
-	public void registrateUser(String userName, String name, String surname, String email, String birth, String password) throws Exception{
+	public void registrateUser(String name, String userName, String surname, String email, String birth, String password){
 		if(!this.users.userExist(userName)){
 			String code = this.getCode(7);
-			this.users.save(userName,name,surname,email,birth,password,code,false);
+			this.users.save(name,userName,surname,email,birth,password,code,false);
 			this.notifyValidation(email,code);
 		}else{
 			throw new UserAlreadyExistException();
