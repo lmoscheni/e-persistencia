@@ -44,8 +44,9 @@ public class Email {
  
   Session session = Session.getInstance(props, null);
  
-  try {
-   MimeMessage message = new MimeMessage(session);
+  try 
+  	{
+	  MimeMessage message = new MimeMessage(session);
    message.addRecipient(Message.RecipientType.TO, new InternetAddress(
      destino));
    message.setSubject(asunto);

@@ -24,15 +24,17 @@ public class HomeUser {
 		return ret;
 	}
 	
-	protected void save(String userName,String name,String surname,String email,String birth,String password) throws Exception{
+	protected void save(String userName,String name,String surname,String email,String birth,String password, String code, boolean validation) throws Exception{
 		Connection connection = new TableConnector().getConnection();
-		PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (Name,UserName,Surname,Email,Password,Birth) VALUES (?,?,?,?,?,?)");
+		PreparedStatement statement = connection.prepareStatement("INSERT INTO Users (Name,UserName,Surname,Email,Password,Birth,CodeValidation,Validation) VALUES (?,?,?,?,?,?,?,?)");
 		statement.setString(1, name);
 		statement.setString(2, userName);
 		statement.setString(3, surname);
 		statement.setString(4, email);
 		statement.setString(5, password);
 		statement.setString(6, birth);
+		statement.setString(7, code);
+		statement.setBoolean(8, validation);
 		statement.executeUpdate();
 		connection.close();
 	}
@@ -73,16 +75,17 @@ public class HomeUser {
 		statement.setString(1,userName);
 		statement.setString(2,code);
 		ResultSet res = statement.executeQuery();
-		String user = null;
-		String codee = null;
-		while(res.next()){
-			user = res.getString("UserName");
-			codee = res.getString("Code");
-		}
-		if (user.equals(userName) && codee.equals(code)){
-			ret = true;
-		}
+		ret = res.next();
 		connection.close();
 		return ret;
+	}
+	
+	public void validate(String userName) throws Exception{
+		Connection connection = new TableConnector().getConnection();
+		PreparedStatement statement = connection.prepareStatement("UPDATE Users SET Validation=? WHERE UserName=?");
+		statement.setBoolean(1,true);
+		statement.setString(2,userName);
+		statement.executeUpdate();
+		connection.close();
 	}
 }

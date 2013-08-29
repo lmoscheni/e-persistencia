@@ -11,9 +11,9 @@ public class VirtualDT {
 	protected HomeUser users = new HomeUser();
 	
 	//********************************************************************************************************************
-	private void notifyValidation(String email) {
-		String code = this.getCode(7);
+	private void notifyValidation(String email,String code) {
 		Email emailToSend = new Email(email, "Codigo de validacion: " + code);
+		emailToSend.send();
 	}
 	
 	public void validatePassword(String userName, String password) throws Exception{
@@ -43,14 +43,15 @@ public class VirtualDT {
 	
 	public void registrateUser(String userName, String name, String surname, String email, String birth, String password) throws Exception{
 		if(!this.users.userExist(userName)){
-			this.users.save(userName,name,surname,email,birth,password);
-			this.notifyValidation(email);
+			String code = this.getCode(7);
+			this.users.save(userName,name,surname,email,birth,password,code,false);
+			this.notifyValidation(email,code);
 		}else{
 			throw new UserAlreadyExistException();
 		}
 	}
 
-	public void validationUser(String userName, String codec){
+	public void validationUser(String userName, String codec) throws Exception{
 		if (this.users.isSameCode(userName,codec)){
 			this.users.validate(userName);
 		}
@@ -63,7 +64,7 @@ public class VirtualDT {
 		if(this.users.isSamePassword(userName, password)){
 			System.out.print("Usuario logueado");
 		}else{
-			throw new FailPasswordException();
+			throw new FailPasswordOrUserException();
 		}
 	}
 	
