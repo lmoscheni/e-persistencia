@@ -11,6 +11,11 @@ public class VirtualDT {
 	protected HomeUser users = new HomeUser();
 	
 	//********************************************************************************************************************
+	//********************************************************************************************************************
+	
+	/*
+	 * Envia el codigo de validacion por mail al usuario.
+	*/
 	private void notifyValidation(String email,String code) {
 		Email emailToSend = new Email(email, "Codigo de validacion: " + code);
 		emailToSend.send();
@@ -25,6 +30,9 @@ public class VirtualDT {
 		}
 	}
 	
+	/*
+	 * Genera un codigo alfanumerico, que luego se envia por mail.
+	 */
 	private String getCode (int longitud){
 		String cadenaAleatoria = "";
 		long milis = new java.util.GregorianCalendar().getTimeInMillis();
@@ -39,6 +47,8 @@ public class VirtualDT {
 		}
 		return cadenaAleatoria;
 	}
+	
+	//********************************************************************************************************************
 	//********************************************************************************************************************
 	
 	public void registrateUser(String userName, String name, String surname, String email, String birth, String password) throws Exception{
@@ -51,16 +61,16 @@ public class VirtualDT {
 		}
 	}
 
-	public void validationUser(String userName, String codec) throws Exception{
+	public void validationUser(String userName, String codec){
 		if (this.users.isSameCode(userName,codec)){
 			this.users.validate(userName);
-		}
-		else{
+		}else{
 			throw new FailCodeValidationException();
 		}
+		
 	}
 	
-	public void login(String userName, String password) throws Exception{
+	public void login(String userName, String password){
 		if(this.users.isSamePassword(userName, password)){
 			System.out.print("Usuario logueado");
 		}else{
@@ -68,13 +78,8 @@ public class VirtualDT {
 		}
 	}
 	
-	public void changePassword(String userName, String password) throws Exception{
-		try{
-			//this.validatePassword(userName,password);
-			this.users.changeUserPassword(userName,password);
-		}catch(FailPasswordException e){
-			
-		}
+	public void changePassword(String userName, String password){
+		this.users.changeUserPassword(userName,password);
 	}
-	
+	//********************************************************************************************************************
 }

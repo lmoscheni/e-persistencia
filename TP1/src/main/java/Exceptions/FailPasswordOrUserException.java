@@ -1,6 +1,6 @@
 package Exceptions;
 
-public class FailPasswordOrUserException extends Exception {
+public class FailPasswordOrUserException extends RuntimeException {
 
 	/**
 	 * @param args

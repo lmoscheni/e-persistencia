@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.MessageFormat;
 
+import Exceptions.SQLException;
+
 public class HomeUser {
 
 	protected TableConnector bd;
@@ -39,53 +41,69 @@ public class HomeUser {
 		connection.close();
 	}
 	
-	public boolean isSamePassword(String userName, String password) throws Exception{
+	public boolean isSamePassword(String userName, String password){
 		boolean ret = false;
-		Connection connection = new TableConnector().getConnection();
-		PreparedStatement statement = connection.prepareStatement("SELECT UserName,Password FROM Users WHERE UserName=? AND Password=?");
-		statement.setString(1,userName);
-		statement.setString(2,password);
-		ResultSet res = statement.executeQuery();
-		String user;
-		String passwordd;
-		if(res.next()){
-			user = res.getString("USerName");
-			passwordd = res.getString("Password");
-			if (user.equals(userName) && passwordd.equals(password)){
-				ret = true;
+		try{
+			Connection connection = new TableConnector().getConnection();
+			PreparedStatement statement = connection.prepareStatement("SELECT UserName,Password FROM Users WHERE UserName=? AND Password=?");
+			statement.setString(1,userName);
+			statement.setString(2,password);
+			ResultSet res = statement.executeQuery();
+			String user;
+			String passwordd;
+			if(res.next()){
+				user = res.getString("USerName");
+				passwordd = res.getString("Password");
+				if (user.equals(userName) && passwordd.equals(password)){
+					ret = true;
+				}
 			}
+			connection.close();
+		}catch(Exception e){
+			throw new SQLException(e);
 		}
-		connection.close();
 		return ret;
 	}
 	
-	public void changeUserPassword(String userName, String password) throws Exception{
-		Connection connection = new TableConnector().getConnection();
-		PreparedStatement statement = connection.prepareStatement("UPDATE Users SET Password=? WHERE UserName=?");
-		statement.setString(1, password);
-		statement.setString(2, userName);
-		statement.executeUpdate();
-		connection.close();
+	public void changeUserPassword(String userName, String password){
+		try{
+			Connection connection = new TableConnector().getConnection();
+			PreparedStatement statement = connection.prepareStatement("UPDATE Users SET Password=? WHERE UserName=?");
+			statement.setString(1, password);
+			statement.setString(2, userName);
+			statement.executeUpdate();
+			connection.close();
+		}catch(Exception e){
+			throw new SQLException(e);
+		}
 	}
 	
-	boolean isSameCode(String userName, String code) throws Exception{
+	boolean isSameCode(String userName, String code){
 		boolean ret = false;
-		Connection connection = new TableConnector().getConnection();
-		PreparedStatement statement = connection.prepareStatement("SELECT UserName,Code FROM Users WHERE UserName=? AND Code=?");
-		statement.setString(1,userName);
-		statement.setString(2,code);
-		ResultSet res = statement.executeQuery();
-		ret = res.next();
-		connection.close();
+		try{
+			Connection connection = new TableConnector().getConnection();
+			PreparedStatement statement = connection.prepareStatement("SELECT UserName,Code FROM Users WHERE UserName=? AND Code=?");
+			statement.setString(1,userName);
+			statement.setString(2,code);
+			ResultSet res = statement.executeQuery();
+			ret = res.next();
+			connection.close();
+		}catch(Exception e){
+			throw new SQLException(e);
+		}
 		return ret;
 	}
 	
-	public void validate(String userName) throws Exception{
-		Connection connection = new TableConnector().getConnection();
-		PreparedStatement statement = connection.prepareStatement("UPDATE Users SET Validation=? WHERE UserName=?");
-		statement.setBoolean(1,true);
-		statement.setString(2,userName);
-		statement.executeUpdate();
-		connection.close();
+	public void validate(String userName){
+		try{
+			Connection connection = new TableConnector().getConnection();
+			PreparedStatement statement = connection.prepareStatement("UPDATE Users SET Validation=? WHERE UserName=?");
+			statement.setBoolean(1,true);
+			statement.setString(2,userName);
+			statement.executeUpdate();
+			connection.close();
+		}catch(Exception e){
+			throw new SQLException(e);
+		}
 	}
 }

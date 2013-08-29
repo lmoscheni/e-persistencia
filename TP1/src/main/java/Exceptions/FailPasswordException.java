@@ -1,5 +1,5 @@
 package Exceptions;
 
-public class FailPasswordException extends Exception {
+public class FailPasswordException extends RuntimeException {
 
 }
