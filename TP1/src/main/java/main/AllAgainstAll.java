@@ -10,7 +10,7 @@ public class AllAgainstAll extends Tournament {
 	public AllAgainstAll(){}
 	
 	public void generateMatches(){
-		int size = this.teams.size();
+		int size = this.teams.size() - 1;
 		Calendar dateOfMatch = null;
 		int day = 1;
 		for(int i=0; i < size;i++){
@@ -18,6 +18,12 @@ public class AllAgainstAll extends Tournament {
 				this.matches.add(new Match(this.teams.get(i),this.teams.get(j + 1), dateOfMatch.DAY_OF_YEAR,dateOfMatch.DAY_OF_MONTH,day));
 			}
 			day++;
+		}
+	}
+	
+	public void startTournament(){
+		for(Match m: this.matches){
+			m.matchResult();
 		}
 	}
 }

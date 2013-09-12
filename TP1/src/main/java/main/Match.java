@@ -40,9 +40,5 @@ public class Match {
 			return Resultado.VISITANTE;
 		return Resultado.EMPATE;
 	}
-	
-	public static void main(String[] args){
-		
-	}
 
 }
