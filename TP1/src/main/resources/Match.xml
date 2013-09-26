@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="main.Match" table="Match" >
+        <id name="id" type="java.lang.Integer">
+            <column name="M_ID" />
+            <generator class="identity" />
+        </id>
+        
+        <many-to-one name="teamLocal" class="main.Team" column="M_TEAM_LOCAL"/>
+        <many-to-one name="teamVisitor" class="main.Team" column="M_TEAM_VISITOR"/>
+        <many-to-one name="matchResult" class="main.Resultado" column="M_RESULT" />
+        
+        <property name="matchDate" type="java.util.Date">
+            <column name="dia" length="20" not-null="true" unique="false" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

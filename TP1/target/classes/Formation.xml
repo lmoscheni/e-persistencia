@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="main.Formation" table="Formation" >
+        <id name="id" type="java.lang.Integer">
+            <column name="F_ID" />
+            <generator class="identity" />
+        </id>
+
+         <bag name="defenders" table = "RelacionJugadorFormacion" cascade="all">
+         	<key column="F_ID" ></key>
+            <many-to-many column= "J_ID" class="main.Player"/>
+        </bag>
+
+         <bag name="midfields" table = "RelacionJugadorFormacion" cascade="all">
+         	<key column="F_ID" ></key>
+            <many-to-many column= "J_ID" class="main.Player"/>
+        </bag>
+        
+         <bag name="fowards" table = "RelacionJugadorFormacion" cascade="all">
+         	<key column="F_ID" ></key>
+            <many-to-many column= "J_ID" class="main.Player"/>
+        </bag>
+       
+         <bag name="suplents" table = "RelacionJugadorFormacion" cascade="all">
+         	<key column="F_ID" ></key>
+            <many-to-many column= "J_ID" class="main.Player"/>
+        </bag>       
+        
+    </class>
+</hibernate-mapping>

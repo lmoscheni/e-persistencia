@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="main.Tournament" table="Tournament" >
+        <id name="id" type="java.lang.Integer">
+            <column name="T_ID" />
+            <generator class="identity" />
+        </id>
+        <discriminator column="discriminator_value"/>
+
+		<bag name="teams" table = "RelacionTorneoEquipo" cascade="all">
+         	<key column="T_ID" ></key>
+            <many-to-many column= "TE_ID" class="main.Team"/>
+        </bag>
+
+		<bag name="matches" table = "RelacionTorneoPartido" cascade="all">
+         	<key column="T_ID" ></key>
+            <many-to-many column= "M_ID" class="main.Match"/>
+        </bag>
+        
+		<subclass name="main.AllAgainstAll" discriminator-value="A">
+		
+		</subclass>
+    </class>
+</hibernate-mapping>
