@@ -6,7 +6,7 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/VirtualDT</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/new_schema</property>
        <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
 
@@ -15,6 +15,11 @@
         <property name="show_sql">true</property>
 
         <mapping resource="Player.xml"></mapping>
+        <mapping resource="Team.xml"></mapping>
+        <mapping resource="Formation.xml"></mapping>
+        <mapping resource="Resultado.xml"></mapping>
+        <mapping resource="Tournament.xml"></mapping>
+        <mapping resource="Match.xml"></mapping>
 		
     </session-factory>
 </hibernate-configuration>

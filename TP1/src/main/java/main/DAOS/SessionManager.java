@@ -1,6 +1,6 @@
 package main.DAOS;
 
-import main.Servicios.Operation;
+import main.servicios.Operation;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -1,26 +1,49 @@
 package main.servicios;
 
 import main.Player;
-import main.daos.PlayerDao;
+import main.DAOS.PlayerDAO;
 
-public class CreatePlayer implements Operation<Player>{
+public class CreatePlayer implements Operation<Player> {
 
-	protected String name;
-	protected String position;
-	protected int number;
-	protected int puntaje;
+	public String getNombre() {
+		return nombre;
+	}
 
-	public CreatePlayer(String name,String pos, int puntaje, int number){
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public Integer getNro() {
+		return score;
+	}
+
+	public void setNro(Integer nro) {
+		this.score = nro;
+	}
+
+	private String nombre;
+	private String position;
+	private Integer score;
+
+	public CreatePlayer(String nombre, String position, int score) {
 		super();
-		this.name = name;
-		this.position = pos;
-		this.number = number;
-		this.puntaje = puntaje;
+		this.nombre = nombre;
+		this.position = position;
+		this.score = score;
+		
 	}
 
 	public Player execute() {
-		Player j = new Player(name, position, puntaje,number);
-		new PlayerDao().save(j);
+		Player j = new Player(nombre, position, score);
+		new PlayerDAO().save(j);
 		return j;
 	}
 }

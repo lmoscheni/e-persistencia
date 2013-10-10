@@ -5,10 +5,11 @@ import java.util.List;
 
 public class Formation {
 	Player goalkeeper;
-	List<Player> defenders;
-	List<Player> midfields;
-	List<Player> fowards;
-	List<Player> suplents;
+	List<Player> defenders = new ArrayList<Player>();
+	List<Player> midfields = new ArrayList<Player>();
+	List<Player> fowards = new ArrayList<Player>();
+	List<Player> suplents = new ArrayList<Player>();
+	protected Integer id;
 	
 	// Constructor para Hibernate
 	protected Formation(){
@@ -19,7 +20,64 @@ public class Formation {
 		this.suplents = null;
 	}
 	
+	public Formation(List<Player> def, List<Player> mid, List<Player> fow, Player goal){
+		this.defenders = def;
+		this.midfields = mid;
+		this.fowards = fow;
+		this.goalkeeper = goal;
+	}
 	
+	
+	
+	
+	public Player getGoalkeeper() {
+		return goalkeeper;
+	}
+
+	public void setGoalkeeper(Player goalkeeper) {
+		this.goalkeeper = goalkeeper;
+	}
+
+	public List<Player> getDefenders() {
+		return defenders;
+	}
+
+	public void setDefenders(List<Player> defenders) {
+		this.defenders = defenders;
+	}
+
+	public List<Player> getMidfields() {
+		return midfields;
+	}
+
+	public void setMidfields(List<Player> midfields) {
+		this.midfields = midfields;
+	}
+
+	public List<Player> getFowards() {
+		return fowards;
+	}
+
+	public void setFowards(List<Player> fowards) {
+		this.fowards = fowards;
+	}
+
+	public List<Player> getSuplents() {
+		return suplents;
+	}
+
+	public void setSuplents(List<Player> suplents) {
+		this.suplents = suplents;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public int calculateTotalScore(){
 		int puntaje = 0;
 		// Calculando el puntaje de la Formation
