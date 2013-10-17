@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.servicios.ConsultPlayers;
+import main.servicios.ConsultTournament;
 import main.servicios.CreateFormation;
 import main.servicios.CreatePlayer;
 import main.servicios.CreateTournament;
@@ -18,7 +19,7 @@ public class Main {
 		//v.registrateUser("juliCapo", "Julian", "Skalic", "skalic.julian@gmail.com", "17/02/1992", "julianskalic");
 		//v.login("juliCapo", "565");
 		//v.validationUser("juliCapo", "XW6EW6P");
-		
+		/*
 		Player p1 = new Player("juli", "delantero", 10);
 		Player p2 = new Player("lea", "delantero", 10);
 		Player p3 = new Player("mati", "delantero", 10);
@@ -41,18 +42,22 @@ public class Main {
 		fow.add(p6);
 		fow.add(p7);
 		
-		Team t1 = new Team();
-		Team t2 = new Team();
+		Team t1 = new Team("Equipo rojo");
+		Team t2 = new Team("Equipo amarillo");
 		t1.setCurrentFormation(new Formation(def,mid,fow,p1));
 		t2.setCurrentFormation(new Formation(def,mid,fow,p1));
 		
-		AllAgainstAll tournament = new AllAgainstAll();
+		AllAgainstAll tournament = new AllAgainstAll("Torneo de verano");
 		tournament.addTeam(t1);
 		tournament.addTeam(t2);
 		tournament.generateMatches();
 		tournament.startTournament();
-		
+		*/
+		AllAgainstAll tournament = new AllAgainstAll("Torneo de verano");
 		main.DAOS.SessionManager.runInSession(new CreateTournament(tournament));
+		Tournament t = main.DAOS.SessionManager.runInSession(new ConsultTournament("Torneo de verano"));
+		System.out.print(t.getNameTournament());
+		//Runtime.getRuntime().exec("mysql new_schema -u root --password=root < matigenio.sql").waitFor();
 		//System.out.println(a.get(0).name);
 	}
 

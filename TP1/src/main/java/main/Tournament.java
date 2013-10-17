@@ -7,13 +7,30 @@ public class Tournament {
 	
 	protected List<Team> teams;
 	protected List<Match> matches;
+	protected String nameTournament;
 	protected Integer id;
 	
-	public Tournament() {
+	public Tournament(){}
+	
+	public Tournament(String name) {
 		this.teams = new ArrayList<Team>();
 		this.matches = new ArrayList<Match>();
+		this.nameTournament = name;
 	} 
 	
+	
+	public String getNameTournament() {
+		return nameTournament;
+	}
+
+
+
+	public void setNameTournament(String nameTournament) {
+		this.nameTournament = nameTournament;
+	}
+
+
+
 	public void addTeam(Team t){
 		this.teams.add(t);
 	}

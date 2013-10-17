@@ -9,7 +9,8 @@
             <generator class="identity" />
         </id>
         
-        <many-to-one name="team" class="main.Team" column="R_WINNER"/>
+        <many-to-one name="teamGanador" class="main.Team" column="R_WINNER"/>
+        <many-to-one name="teamPerdedor" class="main.Team" column="R_LOSER"/>
         
         <property name="resultado" type="string">
             <column name="resultado" length="20" not-null="true" unique="false" />

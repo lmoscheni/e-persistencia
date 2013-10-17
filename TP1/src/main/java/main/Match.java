@@ -81,10 +81,10 @@ public class Match {
 		double scoreTeamLocal = (this.teamLocal.getCurrentFormation().calculateTotalScore()) * ((Math.random() * 0.2) + 0.9);
 		double scoreTeamVisitor = (this.teamVisitor.getCurrentFormation().calculateTotalScore() * ((Math.random() * 0.2) + 0.9));
 		if((this.calcularPorcentaje(scoreTeamLocal, 15)+ scoreTeamLocal) >= scoreTeamVisitor) 
-			this.matchResult = new Resultado(this.teamLocal, "Ganador");
+			this.matchResult = new Resultado(this.teamLocal,this.teamVisitor, "Gano equipo local");
 		if((this.calcularPorcentaje(scoreTeamVisitor, 20)+ scoreTeamVisitor) >= scoreTeamLocal)
-			this.matchResult = new Resultado(this.teamVisitor, "Ganador");
-		this.matchResult = new Resultado(null, "Empate");
+			this.matchResult = new Resultado(this.teamVisitor, this.teamLocal ,"Gano equipo visitante");
+		this.matchResult = new Resultado(this.teamLocal,this.teamVisitor,"Empate");
 	}
 
 }

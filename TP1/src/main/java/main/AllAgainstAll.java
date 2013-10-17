@@ -6,9 +6,10 @@ import java.util.Calendar;
 public class AllAgainstAll extends Tournament {
 
 	
-	public AllAgainstAll(){
-		this.matches = new ArrayList<Match>();
-		this.teams = new ArrayList<Team>();
+	public AllAgainstAll(){}
+	
+	public AllAgainstAll(String name){
+		super(name);
 	}
 	
 	public void generateMatches(){

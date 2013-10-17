@@ -20,6 +20,10 @@
             <many-to-many column= "M_ID" class="main.Match"/>
         </bag>
         
+        <property name="nameTournament" type="string">
+            <column name="name" length="20" not-null="true" unique="false" />
+        </property>
+        
 		<subclass name="main.AllAgainstAll" discriminator-value="A">
 		
 		</subclass>

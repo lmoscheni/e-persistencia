@@ -4,11 +4,13 @@ public class Resultado {
 
 	
 	protected Integer id;
-	protected Team team;
+	protected Team teamGanador;
+	protected Team teamPerdedor;
 	protected String resultado;
 	
-	public Resultado(Team t, String result){
-		this.team = t;
+	public Resultado(Team tg,Team tp, String result){
+		this.teamGanador = tg;
+		this.teamPerdedor = tp;
 		this.resultado = result;
 	}
 
@@ -20,12 +22,20 @@ public class Resultado {
 		this.id = id;
 	}
 
-	public Team getTeam() {
-		return team;
+	public Team getTeamGanador() {
+		return teamGanador;
 	}
 
-	public void setTeam(Team team) {
-		this.team = team;
+	public void setTeamGanador(Team teamGanador) {
+		this.teamGanador = teamGanador;
+	}
+
+	public Team getTeamPerdedor() {
+		return teamPerdedor;
+	}
+
+	public void setTeamPerdedor(Team teamPerdedor) {
+		this.teamPerdedor = teamPerdedor;
 	}
 
 	public String getResultado() {
@@ -35,6 +45,8 @@ public class Resultado {
 	public void setResultado(String resultado) {
 		this.resultado = resultado;
 	}
+	
+	
 	
 	
 }
