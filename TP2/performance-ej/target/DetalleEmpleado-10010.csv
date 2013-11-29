@@ -1,0 +1,15 @@
+"Codigo";10010;
+"Nombre";"Duangkaew";
+"Departamento";"Quality Management";
+"Manager";"Pesch, Dung";
+"Salario Actual";80324.0;
+"Cargo";"Engineer";
+
+"Salario Historico";
+"Salario";"Desde";"Hasta";
+72488.0;"24-11-1996";"24-11-1997";
+74347.0;"24-11-1997";"24-11-1998";
+75405.0;"24-11-1998";"24-11-1999";
+78194.0;"24-11-1999";"23-11-2000";
+79580.0;"23-11-2000";"23-11-2001";
+80324.0;"23-11-2001";"01-01-9999";

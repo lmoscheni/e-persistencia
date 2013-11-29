@@ -1,0 +1,13 @@
+"Codigo";10019;
+"Nombre";"Lillian";
+"Departamento";"Research";
+"Manager";"Kambil, Hilary";
+"Salario Actual";50032.0;
+"Cargo";"Staff";
+
+"Salario Historico";
+"Salario";"Desde";"Hasta";
+44276.0;"30-04-1999";"29-04-2000";
+46946.0;"29-04-2000";"29-04-2001";
+46775.0;"29-04-2001";"29-04-2002";
+50032.0;"29-04-2002";"01-01-9999";
