@@ -152,15 +152,13 @@ class System:
 		self.pool_cache = ConnectionPool("AverageMatches")
 		self.column_cache = ColumnFamily(self.pool_cache , "Average")
 		self.users = []
-		self.cache_status =  []
+		self.cache_status = []
 
 	def add_user( self , user):
 		self.users.append(user)
-		#self.update_cache()
 
 	def remove_user(self, user):
 		self.users.remove(user)
-		#self.update_cache()
 
 	def get_users(self):
 		return self.users
